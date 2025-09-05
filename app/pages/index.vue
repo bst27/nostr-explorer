@@ -1,25 +1,28 @@
 <template>
-  <div class="flex flex-col items-center justify-center gap-4 h-screen">
-    <h1 class="font-bold text-2xl text-(--ui-primary)">
-      Nuxt UI - Starter
-    </h1>
-
-    <div class="flex items-center gap-2">
-      <UButton
-        label="Documentation"
-        icon="i-lucide-square-play"
-        to="https://ui.nuxt.com/getting-started/installation/nuxt"
-        target="_blank"
-      />
-
-      <UButton
-        label="GitHub"
-        color="neutral"
-        variant="outline"
-        icon="i-simple-icons-github"
-        to="https://github.com/nuxt/ui"
-        target="_blank"
-      />
+  <UContainer class="py-6 space-y-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold">Nostr Explorer</h1>
+        <span class="text-sm opacity-70">Web UI for Nostr</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <UButton icon="i-heroicons-book-open" variant="ghost"
+           to="https://nostr.com/" target="_blank" rel="nofollow"
+        >nostr.com</UButton>
+      </div>
     </div>
-  </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="col-span-3 space-y-6">
+        <RelayManager />
+      </div>
+    </div>
+
+    <div class="text-xs opacity-70 text-center">
+      Made by <a href="https://digitalpush.net" target="_blank">Bastian Roesmann — digitalpush.net</a>
+    </div>
+  </UContainer>
 </template>
+
+<script setup lang="ts">
+</script>
