@@ -1,5 +1,5 @@
 import { watch } from 'vue'
-import {type Relay, SimplePool} from 'nostr-tools'
+import {type Filter, type Relay, SimplePool} from 'nostr-tools'
 
 const pool = new SimplePool({ enablePing: true })
 const openRelays = reactive(new Map<RelayURL, Relay>())
@@ -33,6 +33,22 @@ export function useRelayConnections() {
         appStore.setConnectionState(url, 'disconnected')
     }
 
+    function subscribeForEvents(relays: RelayURL[], filters: Filter[]) {
+        if (!relays.length) return
+        if (!filters.length) return
+
+        console.debug('subscribing ...', relays, filters)
+
+        const sub = pool.subscribeMany(relays, filters, {
+            onevent: ((event) => {
+                appStore.setEvent(event)
+            }),
+            oneose: () => {
+                console.debug('on eose', appStore.eventCount)
+            }
+        })
+    }
+
     function startConnectionManagement() {
         // react to changes of selected relays to connect/disconnect as requested
         watch(
@@ -48,8 +64,23 @@ export function useRelayConnections() {
 
                 toClose.forEach(disconnect)
                 toAdd.forEach(connect)
+                subscribeForEvents(toAdd, appStore.activeFilters)
             },
             { immediate: true }
+        )
+
+        // react to changes of subscription filters and reconnect relays to apply active filters
+        watch(
+            () => appStore.activeFilters,
+            (next, prev) => {
+                const relays = appStore.selectedRelayURLs
+
+                console.debug('managing filter changes ...', relays)
+
+                relays.forEach(disconnect)
+                relays.forEach(connect)
+                subscribeForEvents(relays, next)
+            }
         )
     }
 
