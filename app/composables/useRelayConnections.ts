@@ -39,13 +39,15 @@ export function useRelayConnections() {
 
         console.debug('subscribing ...', relays, filters)
 
-        const sub = pool.subscribeMany(relays, filters, {
-            onevent: ((event) => {
-                appStore.setEvent(event)
-            }),
-            oneose: () => {
-                console.debug('on eose', appStore.eventCount)
-            }
+        filters.forEach(filter => {
+            const sub = pool.subscribeMany(relays, filter, {
+                onevent: ((event) => {
+                    appStore.setEvent(event)
+                }),
+                oneose: () => {
+                    console.debug('on eose', appStore.eventCount, filter)
+                }
+            })
         })
     }
 
