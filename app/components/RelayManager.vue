@@ -80,21 +80,6 @@ function addRelay() {
   newRelay.value = ''
 }
 
-onMounted(() => {
-  [
-    'wss://relay.damus.io',
-    'wss://nos.lol',
-    'wss://sendit.nosflare.com',
-    'wss://relay.snort.social',
-  ].forEach((v) => {
-    return
-    appStore.setRelay({
-      url: v as RelayURL,
-      selected: false,
-    })
-  })
-})
-
 function removeRelay(url: RelayURL) {
   appStore.deleteRelay(url)
 }
