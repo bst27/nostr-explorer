@@ -1,75 +1,20 @@
-# Nuxt UI Starter
+![Nostr Explorer](docs/ui.png "Nostr Explorer")
 
-Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+# About
+Nostr Explorer is a web browser application to explore the content
+of the Nostr network which is based on the [Nostr](https://nostr.com/) protocol:
 
-## Setup
+> Nostr is an apolitical communication commons. A simple standard that defines a scalable architecture of clients and servers that can be used to spread information freely. Not controlled by any corporation or government, anyone can build on Nostr and anyone can use it.
 
-Make sure to install the dependencies:
+# Developer
+This application uses Vue.js, Nuxt and Nuxt UI and has been created by [Bastian Roesmann](https://www.digitalpush.net/).
 
+For development:
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm install && npm run dev
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+For production:
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+npm install && npm run build
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
