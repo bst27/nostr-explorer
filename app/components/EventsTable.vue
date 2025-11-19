@@ -94,7 +94,8 @@ const columns: TableColumn<EventRow>[] = [
                   icon: 'i-lucide-ellipsis-vertical',
                   color: 'neutral',
                   variant: 'ghost',
-                  class: 'ml-auto'
+                  class: 'ml-auto',
+                  'data-testid': 'event-actions',
                 })
             )
         ),

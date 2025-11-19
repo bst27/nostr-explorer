@@ -36,7 +36,7 @@ function getRowItems(row: Row<RelayRow>) {
     { type: 'label', label: 'Actions' },
     r.state === 'connected'
         ? { label: 'Disconnect', onSelect: () => emit('disconnect', r.url) }
-        : { label: 'Connect',    onSelect: () => emit('connect', r.url) },
+        : { label: 'Connect',    onSelect: () => emit('connect', r.url), 'data-testid': 'relay-connect', },
     { type: 'separator' },
     { label: 'Delete', onSelect: () => emit('delete', r.url) },
   ]
@@ -80,7 +80,8 @@ const columns: TableColumn<RelayRow>[] = [
                   icon: 'i-lucide-ellipsis-vertical',
                   color: 'neutral',
                   variant: 'ghost',
-                  class: 'ml-auto'
+                  class: 'ml-auto',
+                  'data-testid': 'relay-actions',
                 })
             )
         ),
