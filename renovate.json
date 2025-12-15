@@ -10,5 +10,19 @@
   "rebaseWhen": "behind-base-branch",
   "lockFileMaintenance": {
     "enabled": true
-  }
+  },
+  "automergeType": "pr",
+  "minimumReleaseAge": "5 days",
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": [
+        "lockFileMaintenance",
+        "minor",
+        "patch",
+        "pin",
+        "pinDigest"
+      ]
+    }
+  ]
 }
