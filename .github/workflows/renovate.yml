@@ -1,0 +1,40 @@
+name: Renovate Bot
+
+on:
+  push:
+    branches:
+      - master  # Define default branch name here to be triggered when changes happen
+  issues:
+    types: [opened, edited] # Allows to be triggered when Renovate Dependency Dashboard is used
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *' # Run every night
+
+concurrency:  # Ensure no parallel runs for this workflow
+  group: ${{ github.workflow }}
+
+permissions:
+  contents: read
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    environment: default
+    if: >-
+      github.event_name == 'schedule' ||
+      github.event_name == 'push' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && github.event.issue.title == 'Dependency Dashboard' && contains(github.event.issue.body, 'Dependency Dashboard'))
+    steps:
+      - name: Check out code
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Run Renovate
+        run: |
+          docker run \
+            -e RENOVATE_TOKEN="${{ secrets.RENOVATE_TOKEN }}" \
+            -e RENOVATE_GIT_AUTHOR="${{ secrets.RENOVATE_GIT_AUTHOR }}" \
+            -e RENOVATE_PLATFORM=github \
+            -e RENOVATE_REPOSITORIES="${{ github.repository }}" \
+            -e LOG_LEVEL=info \
+            renovate/renovate:42.58-full
