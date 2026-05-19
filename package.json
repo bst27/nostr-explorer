@@ -13,7 +13,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@iconify-json/lucide": "1.2.107",
+    "@iconify-json/lucide": "1.2.108",
     "@iconify-json/simple-icons": "1.2.82",
     "@nuxt/ui": "3.3.7",
     "@pinia/nuxt": "0.11.3",
