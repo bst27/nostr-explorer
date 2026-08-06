@@ -28,6 +28,6 @@
     "@playwright/test": "1.62.1",
     "eslint": "9.39.5",
     "typescript": "5.9.3",
-    "vite-plugin-vue-devtools": "8.1.5"
+    "vite-plugin-vue-devtools": "8.2.1"
   }
 }
